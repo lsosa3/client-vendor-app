@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Throwable;
 use App\Jobs\SendRequestMail;
 use Carbon\Carbon;
+use App\Http\Controllers\VendorsController;
+use App\Http\Controllers\ClientsController;
 
 class ClientsRequestsController extends Controller
 {
@@ -33,7 +35,12 @@ class ClientsRequestsController extends Controller
      */
     public function create()
     {
-        return view('clientsRequests.create');
+        $ven = new VendorsController();
+        $vendors = $ven->getVendors();
+
+        $cli = new ClientsController();
+        $clients = $cli->getClients();
+        return view('clientsRequests.create', ['vendors' => $vendors, 'clients' => $clients]);
     }
 
     /**
@@ -52,7 +59,7 @@ class ClientsRequestsController extends Controller
 
         try {
             $clientRequest = new ClientsRequests();
-            $clientRequest->client_id = 1;
+            $clientRequest->client_id = $request->client;
             $clientRequest->vendor_id = $request->vendor;
             $clientRequest->description = $request->description;
             $clientRequest->price = $request->price;

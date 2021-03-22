@@ -96,4 +96,11 @@ class ClientsController extends Controller
 
         return $client->name;
     }
+
+    public function getClients()
+    {
+        $clients = Clients::all();
+
+        return $clients;
+    }
 }

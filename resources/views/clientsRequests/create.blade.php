@@ -23,12 +23,22 @@
     </div>
 
     <div class="mb-3">
+        <label for="vendor" class="form-label">Client</label>
+        <select class="form-select" name="client" id="client" aria-label="Select client" required>
+            <option selected>Select</option>
+            @foreach ($clients as $client)
+                <option value="{{ $client->id }}">{{ $client->name }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="mb-3">
         <label for="vendor" class="form-label">Vendor</label>
         <select class="form-select" name="vendor" id="vendor" aria-label="Select vendor" required>
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option selected>Select</option>
+            @foreach ($vendors as $vendor)
+                <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+            @endforeach
         </select>
     </div>
 

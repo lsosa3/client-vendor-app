@@ -7,7 +7,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
@@ -27,10 +26,10 @@ class SendRequestMail implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Request $request)
+    public function __construct($request)
     {
         $this->vendorId = $request->vendor;
-        $this->clientId = 1;
+        $this->clientId = $request->client;
         $this->description = $request->description;
     }
 

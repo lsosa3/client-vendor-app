@@ -96,4 +96,11 @@ class VendorsController extends Controller
 
         return $vendor->name;
     }
+
+    public function getVendors()
+    {
+        $vendors = Vendors::all();
+
+        return $vendors;
+    }
 }
